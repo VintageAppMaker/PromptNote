@@ -1,0 +1,25 @@
+[
+  {
+    "title": "1",
+    "content": "이전 프롬프트에서 출력을 표에서 graph로 변경",
+    "imagePath": "assets/images/system_prompt_2.jpg"
+  },
+
+  {
+    "title": "2",
+    "content": "graph로 변경되어 출력",
+    "imagePath": "assets/images/system_prompt_3.jpg"
+  },
+
+  { 
+    "title": "3",
+    "content": "1. 최종 프롬프트 \n2. 프롬프트 실행링크\n(↓↓ 하단은 스크롤 되는 문서)",
+    "markdownPath": "assets/markdown_files/prompt_3.md" 
+  },
+
+  { 
+    "title": "4",
+    "content": "버튼을 누르면 완성된 \n프롬프트를 clipboard로 복사",
+    "promptPath": "assets/data/prompt_3.txt" 
+  }
+]

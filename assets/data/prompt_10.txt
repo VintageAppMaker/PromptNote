@@ -1,0 +1,132 @@
+
+# Textbase Simple RPG Game
+> 간단한 중세시대 RPG 게임
+
+
+## 목적
+Chatgpt에서 TextBase 게임을 구현한다. 
+
+## 환경
+
+- ChatGPT에서 프롬프트로 실행 
+- 게임로직을 수행(기능 섹션에 정의된 play_game).
+- 무료사용자도 수행가능
+
+## 기능
+
+- 아래와 같은 로직을 수행한다. 
+~~~python
+import random
+
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.hp = 100
+        self.attack = 10
+        self.inventory = ["포션"]
+        self.enemies_defeated = 0  # 처치한 적 수
+
+    def attack_enemy(self, enemy):
+        damage = random.randint(5, self.attack)
+        enemy.hp -= damage
+        return f"🗡️ {self.name}이(가) {enemy.name}을(를) 공격! ({damage} 피해)"
+
+    def heal(self):
+        if "포션" in self.inventory:
+            self.hp += 20
+            self.inventory.remove("포션")
+            return f"🩹 {self.name}이(가) 포션을 사용해 체력을 회복했습니다! (HP: {self.hp})"
+        return "⚠️ 포션이 없습니다!"
+
+class Enemy:
+    def __init__(self, name, hp, attack):
+        self.name = name
+        self.hp = hp
+        self.attack = attack
+
+    def attack_player(self, player):
+        damage = random.randint(5, self.attack)
+        player.hp -= damage
+        return f"⚔️ {self.name}이(가) {player.name}을(를) 공격! ({damage} 피해)"
+
+def show_health(player, enemy):
+    """모험가와 적의 체력을 실시간으로 표시하는 함수"""
+    print(f"\n📊 현재 체력 상태")
+    print(f"❤️ {player.name} HP: {player.hp}")
+    print(f"🐺 {enemy.name} HP: {enemy.hp}")
+
+def battle(player, enemy):
+    print(f"\n⚔️ {enemy.name}이(가) 나타났습니다! 전투 시작!")
+    
+    while player.hp > 0 and enemy.hp > 0:
+        show_health(player, enemy)  # 체력 표시
+        action = input("\n1. 공격  2. 포션 사용  3. 도망\n번호를 입력하세요: ")
+
+        if action == "1":
+            print(player.attack_enemy(enemy))
+        elif action == "2":
+            print(player.heal())
+        elif action == "3":
+            print("🏃‍♂️ 도망쳤습니다!")
+            return
+        
+        if enemy.hp > 0:
+            print(enemy.attack_player(player))
+
+    show_health(player, enemy)  # 마지막 체력 표시
+
+    if player.hp <= 0:
+        print("💀 당신은 패배했습니다...")
+    elif enemy.hp <= 0:
+        print(f"🎉 {enemy.name}을(를) 물리쳤습니다!")
+        player.enemies_defeated += 1  # 처치한 적 수 증가
+
+def show_final_results(player):
+    print("\n📜 **최종 결과** 📜")
+    print(f"✅ 모험가 이름: {player.name}")
+    print(f"❤️ 남은 체력: {player.hp}")
+    print(f"⚔️ 처치한 적: {player.enemies_defeated} 마리")
+    print(f"🎒 남은 아이템: {', '.join(player.inventory) if player.inventory else '없음'}")
+    print("🎮 게임 종료! 👋")
+
+def play_game():
+    player = Player("모험가")
+    print(f"🎮 {player.name}, 모험을 시작합니다!")
+
+    while True:
+        print("\n📍 마을에 있습니다. 어디로 갈까요?")
+        print("1. 숲으로 간다")
+        print("2. 상점으로 간다")
+        print("3. 게임 종료")
+
+        choice = input("번호를 입력하세요: ")
+
+        if choice == "1":
+            enemy = Enemy("늑대", 50, 8)
+            battle(player, enemy)
+        elif choice == "2":
+            print("🛒 상점에서 포션을 구입했습니다!")
+            player.inventory.append("포션")
+        elif choice == "3":
+            show_final_results(player)
+            break
+        else:
+            print("🚫 잘못된 입력입니다.")
+
+# 게임 실행
+play_game()
+~~~
+
+- input의 함수는 
+  - ChatGPT가 메시지 출력
+  - 사용자에게 숫자 입력을 받는다. 
+  - 숫자입력 외에는 명령을 수행하지 않는다. 
+
+## 결과물
+
+- ChatGPT에서 사용자 프롬프트를 받는다. 
+  - "게임시작"외에는 "게임시작을 입력하세요"로 출력한다. 
+  - 게임시작이 입력되면 play_game()이 실행된다.
+  - 이후, play_game()이 요구하는 input만 처리한다. 
+    - 만약 "게임종료"가 입력되면:
+      play_game()을 종료하고 "게임"을 출력한다. 

@@ -1,0 +1,21 @@
+{
+  "prompt": "두 개의 숫자를 입력하세요:",
+  "inputs": [
+    {
+      "name": "number1",
+      "type": "integer",
+      "description": "첫 번째 숫자"
+
+    },
+    {
+      "name": "number2",
+      "type": "integer",
+      "description": "두 번째 숫자"
+    }
+  ],
+
+  "function": "FUNCTION add_numbers(a, b)\n    RETURN a + b\nEND FUNCTION",
+  "execution": {
+    "output": "add_numbers(${number1}, ${number2})"
+  }
+}

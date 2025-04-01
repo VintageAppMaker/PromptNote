@@ -1,0 +1,12 @@
+[
+  {
+    "title": "1",
+    "content": "성적관련 프롬프트를 ChatGPT에서 수행\n(↓↓ 하단은 스크롤 되는 문서)",
+    "markdownPath": "assets/markdown_files/prompt_4.md"
+  },
+  { 
+    "title": "2",
+    "content": "버튼을 누르면 완성된 \n프롬프트를 clipboard로 복사",
+    "promptPath": "assets/data/prompt_4.txt" 
+  }
+]

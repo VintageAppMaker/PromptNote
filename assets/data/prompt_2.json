@@ -1,0 +1,18 @@
+[
+  {
+    "title": "1",
+    "content": "프롬프트를 사용할 때, 시스템(법칙), 사용자(요구) 형태로 구분하여 작성한다.",
+    "imagePath": "assets/images/system_prompt_1.gif"
+  },
+  { 
+    "title": "2",
+    "content": "1. 최종 프롬프트 \n2. 프롬프트 실행링크\n(↓↓ 하단은 스크롤 되는 문서)",
+    "markdownPath": "assets/markdown_files/prompt_2.md" 
+  },
+  { 
+    "title": "3",
+    "content": "버튼을 누르면 완성된 \n프롬프트를 clipboard로 복사",
+    "promptPath": "assets/data/prompt_2.txt" 
+  }
+
+]
